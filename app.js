@@ -7,7 +7,9 @@
 				template: '<h2>Hello World!<h2> <div role="tabpanel" ng-transclude></div>',
 				require: '^tabset',
 				scope: {},
-				link: function(scope, elem, attr, tabsetCtrl) {}
+				link: function(scope, elem, attr, tabsetCtrl) {
+					tabsetCtrl.addTab(scope);
+				}
 			}
 		})
 		.directive('tabset', function() {
@@ -20,7 +22,10 @@
 				controllerAs: 'tabset',
 				controller: function() {
 					var vm = this;
-					this.tabs = [];
+					vm.tabs = [];
+					vm.addTab = function addTab(tab) {
+						vm.tabs.push(tab);
+					}
 				}
 			}
 		})
