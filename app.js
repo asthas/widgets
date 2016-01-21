@@ -33,6 +33,14 @@
 							tab.active = "true"
 						}
 					}
+					vm.select = function(selectedTab) {
+						angular.forEach(vm.tabs, function(tab) {
+							if(tab.active && tab!==selectedTab){
+								tab.active = false;
+							}
+						})
+						selectedTab.active=true;
+					}
 				}
 			}
 		})
