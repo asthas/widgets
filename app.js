@@ -4,12 +4,13 @@
 			return {
 				restrict: 'E', 
 				transclude: true,
-				template: '<h2>Hello World!<h2> <div role="tabpanel" ng-transclude></div>',
+				template: '<div role="tabpanel" ng-show="active" ng-transclude></div>',
 				require: '^tabset',
 				scope: {
 					heading: '@'
 				},
 				link: function(scope, elem, attr, tabsetCtrl) {
+					scope.active = false;
 					tabsetCtrl.addTab(scope);
 				}
 			}
@@ -27,6 +28,10 @@
 					vm.tabs = [];
 					vm.addTab = function addTab(tab) {
 						vm.tabs.push(tab);
+
+						if(vm.tabs.length === 1) {
+							tab.active = "true"
+						}
 					}
 				}
 			}
